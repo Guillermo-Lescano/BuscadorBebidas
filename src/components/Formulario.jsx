@@ -1,11 +1,29 @@
 import React from "react";
+import { useState } from "react";
 import useCategoria from "../Hooks/useCategorias";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col, Alert } from "react-bootstrap";
 
 const Formulario = () => {
+  const [busqueda, setBusqueda] = useState({
+    nombre: "",
+    categoria: "",
+  });
+  const [alerta, setAlerta] = useState('')
   const { categorias } = useCategoria();
+
+  const handleSubmit =(e) =>{
+    e.preventDefault()
+
+    if(Object.values(busqueda).includes('')){
+      setAlerta('Todos los campos son obligatioris')
+      return
+    }
+    setAlerta('')
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
+      {alerta && <Alert variant="danger" className="text-center">{alerta}</Alert> }
       <Row>
         <Col md={6}>
           <Form.Group className="mb-3">
@@ -15,13 +33,30 @@ const Formulario = () => {
               name="nombre"
               placeholder="Ej: Tequila, Vodka, etc.."
               type="text"
+              value={busqueda.nombre}
+              onChange={(e) =>
+                setBusqueda({
+                  ...busqueda,
+                  [e.target.name]: e.target.value,
+                })
+              }
             />
           </Form.Group>
         </Col>
         <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="categoria">Categoria Bebida</Form.Label>
-            <Form.Select id="categoria" name="categoria">
+            <Form.Select
+              id="categoria"
+              name="categoria"
+              value={busqueda.categoria}
+              onChange={(e) =>
+                setBusqueda({
+                  ...busqueda,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            >
               <option>- Seleccione una categoria -</option>
               {categorias.map((cat) => (
                 <option key={cat.strCategory} value={cat.strCategory}>
@@ -34,10 +69,9 @@ const Formulario = () => {
       </Row>
       <Row className="justify-content-end">
         <Col md={3}>
-          <Button
-            variant="danger"
-            className="text-uppercase w-100"
-          >Buscar Bebida</Button>
+          <Button variant="danger" className="text-uppercase w-100" type="submit">
+            Buscar Bebida
+          </Button>
         </Col>
       </Row>
     </Form>
