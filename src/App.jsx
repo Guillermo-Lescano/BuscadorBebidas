@@ -12,10 +12,11 @@ function App() {
           <h1>Buscador de Bebidas</h1>
         </header>
 
-        <Container>
+        <Container className="mt-5">
           <Formulario />
+          <ListadoBebidas />
         </Container>
-        <ListadoBebidas />
+        
       </BebidasProvider>
     </CategoriaProvider>
   );

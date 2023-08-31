@@ -25,9 +25,9 @@ const Formulario = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="mb-4">
       {alerta && <Alert variant="danger" className="text-center">{alerta}</Alert> }
-      <Row style={{margin:8}}>
+      <Row>
         <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="nombre">Nombre Bebida</Form.Label>
