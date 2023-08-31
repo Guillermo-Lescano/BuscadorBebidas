@@ -11,6 +11,7 @@ const Formulario = () => {
   });
   const [alerta, setAlerta] = useState('')
   const { categorias } = useCategoria();
+  const {consultarBebidas} = useBebidas();
 
   const handleSubmit =(e) =>{
     e.preventDefault()
@@ -20,12 +21,13 @@ const Formulario = () => {
       return
     }
     setAlerta('')
+    consultarBebidas(busqueda)
   }
 
   return (
     <Form onSubmit={handleSubmit}>
       {alerta && <Alert variant="danger" className="text-center">{alerta}</Alert> }
-      <Row>
+      <Row style={{margin:8}}>
         <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="nombre">Nombre Bebida</Form.Label>
