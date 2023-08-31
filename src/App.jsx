@@ -2,6 +2,7 @@ import { Container, Form } from "react-bootstrap";
 import Formulario from "./components/Formulario";
 import { CategoriaProvider } from "./Context/CategoriasProvider";
 import { BebidasProvider } from "./Context/BebidasProvider";
+import ListadoBebidas from "./components/ListadoBebidas";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Container>
           <Formulario />
         </Container>
+        <ListadoBebidas />
       </BebidasProvider>
     </CategoriaProvider>
   );
