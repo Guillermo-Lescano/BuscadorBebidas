@@ -4,7 +4,7 @@ import useBebidas from '../Hooks/useBebibas'
 
 const ModalBebida = () => {
 
-    const {handleModalClick, modal, receta} = useBebidas()
+    const {handleModalClick, modal, receta, cargando} = useBebidas()
     console.log(receta)
 
   const mostrarIngredientes = () =>{
@@ -22,6 +22,7 @@ const ModalBebida = () => {
   }
 
   return (
+    !cargando && (
     <Modal show={modal} onHide={handleModalClick}>
         <Image
           src={receta.strDrinkThumb}
@@ -40,6 +41,7 @@ const ModalBebida = () => {
             </div>
         </Modal.Body>
     </Modal>
+    )
   )
 }
 
