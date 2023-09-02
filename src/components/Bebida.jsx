@@ -2,7 +2,7 @@ import { Button, Card, Col } from "react-bootstrap";
 import useBebidas from "../Hooks/useBebibas";
 
 const Bebida = ({ bebida }) => {
-  const { handleModalClick } = useBebidas();
+  const { handleModalClick, handleIdBebidaClick } = useBebidas();
 
   return (
     <Col md={4} lg={3}>
@@ -20,6 +20,7 @@ const Bebida = ({ bebida }) => {
           className="w-100 text-Uppercase mt-2"
           onClick={() => {
             handleModalClick()
+            handleIdBebidaClick(bebida.idDrink)
           }}
         >
           Ver Reseta
